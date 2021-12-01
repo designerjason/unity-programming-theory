@@ -1,0 +1,16 @@
+##inheritance##
+ -enemy
+  --infantry
+  --tank
+  --plane
+  --jeep
+
+##polymorphism##
+(think about enemies above and think about how they could change depending on type 
+i.e what do they have in common, what they do not)
+
+##encapsulation##
+set damage taken and received for enemy etc property set/get
+
+##abstraction##
+figure out methods eg shoot(), move() etc
