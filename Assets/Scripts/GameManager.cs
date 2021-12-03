@@ -80,6 +80,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
+    public void QuitGame()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void GameOver()
     {
         isGameOver = true;
