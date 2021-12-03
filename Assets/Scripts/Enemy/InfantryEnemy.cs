@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// INHERITANCE
 public class InfantryEnemy : Enemy
 {
     Vector3 direction;
@@ -9,13 +11,16 @@ public class InfantryEnemy : Enemy
 
     void Awake()
     {
-        //health = 100;
-        damage = 10;
         moveSpeed = 5;
         scoreValue = 5;
         // invoke randomdirection change every 0.5f
         InvokeRepeating("RandomDirection", 0.5f, 0.5f);
-        Shoot(bullet);
+        InvokeRepeating("RepeatShot", 1f, 2f);
+    }
+
+    void RepeatShot()
+    {
+        Shoot(bullet);   
     }
 
     void Update()
@@ -23,6 +28,7 @@ public class InfantryEnemy : Enemy
         Move();
     }
 
+    // POLYMORPHISM
     public override void Move()
     {
         // infantry has randomized direction

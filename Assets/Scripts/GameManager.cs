@@ -5,8 +5,12 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    
+    public int score;
+    public int playerHealth;
     private static float m_hBounds = 45.0f;
     private static float m_vBounds = 15.0f; 
+    // ENCAPSULATION
     public static float hBounds { get { return m_hBounds; } }
     public static float vBounds { get { return m_vBounds; } }
     [SerializeField] private TextMeshProUGUI m_scoreText;
@@ -14,16 +18,31 @@ public class GameManager : MonoBehaviour
     public List<GameObject> enemyList { 
         get { return m_enemyList; } 
     }
-    public TextMeshProUGUI scoreText {
-        get { return m_scoreText; }
-        set { m_scoreText = scoreText; }
-    }
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI playerHealthText;
 
     // Start is called before the first frame update
     void Start()
     {
-        SpawnEnemy(enemyList[2]);
+        playerHealth = 100;
         InvokeRepeating("SpawnRandomEnemy", 1, 2);
+    }
+
+    public void AddScore(int addPoints)
+    {
+        score += addPoints;
+        scoreText.text = "Score: " + score;
+    }
+
+    public void PlayerDamage(int damage)
+    {
+        playerHealth -= damage;
+        playerHealthText.text = "Health: " + playerHealth;
+
+        if(playerHealth == 0)
+        {
+            Debug.Log("gameover");
+        }
     }
 
     // randomise the spawned enemy

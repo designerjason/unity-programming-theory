@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     [SerializeField]
     protected GameObject bullet;
+    public GameManager gameManager;
 
     // Update is called once per frame
     void Update()
@@ -38,8 +39,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void TakeDamage()
+    public void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("BulletEnemy") || other.gameObject.CompareTag("Enemy"))
+        {
+            gameManager.PlayerDamage(25);
+        }
     }
 }

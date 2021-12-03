@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
 public class TankEnemy : Enemy
 {
     public GameObject bullet;
@@ -9,12 +10,8 @@ public class TankEnemy : Enemy
     // Start is called before the first frame update
     void Awake()
     {
-        health = 500;
-        damage = 40;
         moveSpeed = 3;
-    }
-
-    void Start() {
+        scoreValue = 10;
         coroutine = Shooting();
         StartCoroutine("Shooting");
     }
@@ -26,11 +23,13 @@ public class TankEnemy : Enemy
 
     IEnumerator Shooting()
     {
+        //Shoot(bullet);
+        //yield return new WaitForSeconds(0.5f);
         int ammo = 3;
         while(ammo > 0) {
             Shoot(bullet);
             ammo--;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.25f);
             
         }
         if(ammo == 0) {
@@ -41,7 +40,7 @@ public class TankEnemy : Enemy
 
     IEnumerator Reloading()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         StartCoroutine("Shooting");
     }
 }

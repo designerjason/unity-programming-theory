@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
 public class PlaneEnemy : Enemy
 {
     public GameObject paratrooper;
 
     void Awake()
     {
-        health = 200;
-        damage = 25;
         moveSpeed = 25;
+        scoreValue = 0;
     }
 
     void Start() {
         int i = 1;
-        while (i < 4)
+        while (i < 3)
         {
             Invoke("SpawnParatrooper", i); 
             i++;

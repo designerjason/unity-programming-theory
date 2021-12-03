@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected int health;
-    [SerializeField] protected int damage;
     [SerializeField] protected int moveSpeed;
-    [SerializeField] public int scoreValue;
+    [SerializeField] protected int scoreValue;
 
-    public virtual void Shoot(GameObject bullet)
+    GameManager gameManager;
+
+    void Start() {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
+    // ABSTRACTION
+    public virtual void Shoot(GameObject bulletEnemy)
     {
-        Instantiate(bullet, transform.position, bullet.transform.rotation);
+        Instantiate(bulletEnemy, transform.position, bulletEnemy.transform.rotation);
     }
 
     public virtual void Move()
     {
         transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-    }
-
-    void TakeDamage()
-    {
-
     }
 
     public void OnTriggerEnter(Collider other)
@@ -33,7 +33,9 @@ public class Enemy : MonoBehaviour
 
         if(other.gameObject.CompareTag("Bullet"))
         {
+            gameManager.AddScore(scoreValue);
             Destroy(this.gameObject);
+            Destroy(other.gameObject);
         }
     }
 }

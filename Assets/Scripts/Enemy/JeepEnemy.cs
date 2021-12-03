@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
 public class JeepEnemy : Enemy
 {
     void Awake()
     {
-        health = 400;
         moveSpeed = 20;
+        scoreValue = 10;
     }
 
     void Update() 

@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     // remove the bullet when it hits the boundary
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Boundary") || other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Boundary"))
         {
             Destroy(this.gameObject);
         }
