@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,11 @@ public class GameManager : MonoBehaviour
     }
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI playerHealthText;
+    public GameObject gameOverScreen;
+    public GameObject player;
+    public ParticleSystem playerDeath;
+    public ParticleSystem playerDamage;
+    public bool isGameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +47,7 @@ public class GameManager : MonoBehaviour
 
         if(playerHealth == 0)
         {
-            Debug.Log("gameover");
+            GameOver();
         }
     }
 
@@ -67,5 +73,19 @@ public class GameManager : MonoBehaviour
         }
         
         Instantiate(enemyType, spawnPos, enemyType.transform.rotation);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void GameOver()
+    {
+        isGameOver = true;
+        gameOverScreen.SetActive(true);
+        playerDeath.Play();
+        player.SetActive(false);
+        CancelInvoke();
     }
 }

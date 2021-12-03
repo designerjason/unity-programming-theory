@@ -13,8 +13,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Shoot();
+        if(!gameManager.isGameOver) {
+            Move();
+            Shoot();
+        }
     }
 
     void Move()
@@ -43,7 +45,11 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("BulletEnemy") || other.gameObject.CompareTag("Enemy"))
         {
-            gameManager.PlayerDamage(25);
+            if(!gameManager.isGameOver)
+            {
+                gameManager.PlayerDamage(25);
+                gameManager.playerDamage.Play();
+            }
         }
     }
 }
